@@ -36,16 +36,16 @@ Modern C++20 real‑time messaging server built on uWebSockets, a worker/queue p
 
 ```mermaid
 flowchart LR
-    Client[WebSocket client] -->|text frame| UWS[uWebSockets handlers]
+    Client[WebSocket Client] -->|text frame| UWS[uWebSockets Handlers]
     UWS -->|CommandRequest| InQ[EventQueue]
-    InQ -->|pop| Workers[WorkerPool threads]
-    Workers --> Dispatcher[Dispatcher + ICommand]
+    InQ -->|pop| Workers[WorkerPool Threads]
+    Workers --> Dispatcher[Dispatcher and ICommand]
     Dispatcher --> OutQ[OutgoingQueue]
     HubPub[HubPublisher] -->|snapshots| OutQ
-    OutQ --> OutCons[OutgoingQueueConsumer (uWS timer)]
-    OutCons --> Gateway[ClientGateway + ConnectionManager]
+    OutQ --> OutCons[OutgoingQueueConsumer uWS Timer]
+    OutCons --> Gateway[ClientGateway and ConnectionManager]
     Gateway -->|send/publish| Client
-    Heartbeat[Heartbeat timer] --> Client
+    Heartbeat[Heartbeat Timer] --> Client
 ```
 
 ## 4. Build Instructions
